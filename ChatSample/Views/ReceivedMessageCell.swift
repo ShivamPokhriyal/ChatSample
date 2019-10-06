@@ -40,7 +40,7 @@ class ReceivedMessageCell: UITableViewCell {
     let bubbleView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 5
-        view.backgroundColor = .lightGray
+        view.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
         view.clipsToBounds = true
         return view
     }()

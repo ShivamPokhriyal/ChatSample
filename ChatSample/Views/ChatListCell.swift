@@ -69,7 +69,10 @@ class ChatListCell: UITableViewCell {
 
     func update(model: ChatItem) {
         if let imageUrl = model.user.imageUrl {
-
+            let docDirPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let path = docDirPath.appendingPathComponent(imageUrl)
+            let data = try! Data(contentsOf: path)
+            profileImage.image = UIImage(data: data)
         } else {
             let placeholder = UIImage(named: "placeholder", in: Bundle.chat, compatibleWith: nil)
             profileImage.image = placeholder

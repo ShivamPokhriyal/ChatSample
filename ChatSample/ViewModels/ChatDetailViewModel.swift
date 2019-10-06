@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol ChatDetailDelegate {
+protocol ChatDetailDelegate: class {
     func messagesLoaded()
     func loadingError()
     func messageAdded(at position: Int)
@@ -18,7 +18,7 @@ class ChatDetailViewModel {
 
     var messages = [Message]()
     var userId: String
-    var delegate: ChatDetailDelegate?
+    weak var delegate: ChatDetailDelegate?
     var messageService = MessageDBService()
     var userService = UserDBService()
 

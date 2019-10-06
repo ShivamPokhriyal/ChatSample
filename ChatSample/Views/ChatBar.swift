@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol ChatBarDelegate {
+protocol ChatBarDelegate: class {
     func updateChatBarHeight(_ height: CGFloat)
     func sendMessage(text: String)
     func attachmentTapped()
@@ -66,7 +66,7 @@ class ChatBar: UIView {
         return view
     }()
 
-    var delegate: ChatBarDelegate?
+    weak var delegate: ChatBarDelegate?
 
     let textViewMinHeight: CGFloat = 40
     let textViewMaxHeight: CGFloat = 110

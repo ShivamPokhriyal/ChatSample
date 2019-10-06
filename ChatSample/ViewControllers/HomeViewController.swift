@@ -90,7 +90,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Tapped")
+        tableView.deselectRow(at: indexPath, animated: true)
         guard let chatItem = viewModel.chatItem(at: indexPath.row) else { return }
         let vc = ChatDetailViewController(userId: chatItem.message.userId)
         self.navigationController?.pushViewController(vc, animated: false)

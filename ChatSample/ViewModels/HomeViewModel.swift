@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol HomeViewModelDelegate {
+protocol HomeViewModelDelegate: class {
     func chatLoaded()
     func loadingError()
 }
@@ -18,7 +18,7 @@ class HomeViewModel {
     var chats = [ChatItem]()
     var messageService = MessageDBService()
     var userService = UserDBService()
-    var delegate: HomeViewModelDelegate?
+    weak var delegate: HomeViewModelDelegate?
 
     func prepareController() {
         guard let messageList = messageService.getMessageList() else {

@@ -21,6 +21,7 @@ class ChatDetailViewController: UIViewController {
         tableView.allowsSelection = false
         tableView.backgroundColor = .clear
         tableView.estimatedRowHeight = 60
+        tableView.isHidden = true
         return tableView
     }()
 
@@ -109,7 +110,7 @@ class ChatDetailViewController: UIViewController {
             chatBarBottomConstraint,
             chatBarHeightConstraint,
 
-            tableView.topAnchor.constraint(equalTo: topAnchor),
+            tableView.topAnchor.constraint(equalTo: topAnchor, constant: 5),
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: chatBar.topAnchor, constant: -5)
@@ -210,7 +211,7 @@ extension ChatDetailViewController: UIImagePickerControllerDelegate, UINavigatio
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let fileName = String(format: "IMG-%f.jpeg", Date().timeIntervalSince1970)
         let path = documentsURL.appendingPathComponent(fileName).path
-        let data = ImageUtil().compress(image: image) as? NSData
+        let data = ImageUtil().compress(image: image) as NSData?
         data?.write(toFile: path, atomically: true)
         return fileName
     }
@@ -219,6 +220,11 @@ extension ChatDetailViewController: UIImagePickerControllerDelegate, UINavigatio
 extension ChatDetailViewController: ChatDetailDelegate {
     func messagesLoaded() {
         tableView.reloadData()
+        DispatchQueue.main.async {
+self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.numberOfRows(in: 0) - 1, section: 0), at: .bottom, animated: false)
+            self.tableView.isHidden = false
+        }
+
     }
 
     func loadingError() {

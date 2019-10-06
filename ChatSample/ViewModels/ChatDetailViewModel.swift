@@ -71,7 +71,7 @@ class ChatDetailViewModel {
             messages.append(message)
             delegate?.messageAdded(at: messages.count - 1)
             sendMessageNotification(message: message)
-//            reply()
+            reply()
         } else {
             /// Show error
         }

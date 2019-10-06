@@ -70,6 +70,15 @@ class ChatDetailViewController: UIViewController {
                 if weakSelf.chatBarBottomConstraint.constant == keyboardHeight { return }
 
                 weakSelf.chatBarBottomConstraint.constant = keyboardHeight
+                let rows = weakSelf.viewModel.numberOfRows(in: 0)
+                if rows > 0 {
+                    DispatchQueue.main.async {
+                        weakSelf.tableView.scrollToRow(
+                            at: IndexPath(row: rows - 1, section: 0),
+                            at: .bottom,
+                            animated: false)
+                    }
+                }
             }
         )
 

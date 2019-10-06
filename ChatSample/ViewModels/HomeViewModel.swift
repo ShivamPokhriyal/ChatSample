@@ -49,9 +49,8 @@ class HomeViewModel {
     // TODO: Use Diffing here to reload only updated rows
     func addMessage(_ message: Message) {
         for index in 0..<chats.count {
-            var current = chats[index]
-            if current.message.userId == message.userId {
-                current.message = message
+            if chats[index].message.userId == message.userId {
+                chats[index].message = message
                 delegate?.chatLoaded()
                 return
             }

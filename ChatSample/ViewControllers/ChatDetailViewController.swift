@@ -221,7 +221,7 @@ extension ChatDetailViewController: ChatDetailDelegate {
     func messagesLoaded() {
         tableView.reloadData()
         DispatchQueue.main.async {
-self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.numberOfRows(in: 0) - 1, section: 0), at: .bottom, animated: false)
+            self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.numberOfRows(in: 0) - 1, section: 0), at: .bottom, animated: false)
             self.tableView.isHidden = false
         }
 

@@ -70,7 +70,8 @@ class ChatDetailViewModel {
         if messageService.addMessage(message) {
             messages.append(message)
             delegate?.messageAdded(at: messages.count - 1)
-            reply()
+            sendMessageNotification(message: message)
+//            reply()
         } else {
             /// Show error
         }
@@ -84,8 +85,14 @@ class ChatDetailViewModel {
             if self.messageService.addMessage(message) {
                 self.messages.append(message)
                 self.delegate?.messageAdded(at: self.messages.count - 1)
+                self.sendMessageNotification(message: message)
             }
         }
+    }
+
+    private func sendMessageNotification(message: Message) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SendMessage"),
+                                        object: message)
     }
 
     private func getMessageTemplate() -> Message {

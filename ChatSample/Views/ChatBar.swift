@@ -135,7 +135,6 @@ class ChatBar: UIView {
             textView.text = ""
             clearTextView()
         case attachmentButton:
-            print("Send attachment")
             delegate?.attachmentTapped()
         default:
             print("Do nothing")

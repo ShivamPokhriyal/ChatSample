@@ -11,6 +11,7 @@ import Foundation
 protocol ChatDetailDelegate {
     func messagesLoaded()
     func loadingError()
+    func messageAdded(at position: Int)
 }
 
 class ChatDetailViewModel {
@@ -53,8 +54,48 @@ class ChatDetailViewModel {
         return messages[index]
     }
 
-    func sendMessage(text: String?, filePath: String?) {
+    func sendText(_ text: String) {
+        var message = getMessageTemplate()
+        message.message = text
+        sendMessage(message)
+    }
 
+    func sendAttachment(_ path: String) {
+        var message = getMessageTemplate()
+        message.filePath = path
+        sendMessage(message)
+    }
+
+    private func sendMessage(_ message: Message) {
+        if messageService.addMessage(message) {
+            messages.append(message)
+            delegate?.messageAdded(at: messages.count - 1)
+            reply()
+        } else {
+            /// Show error
+        }
+    }
+
+    private func reply() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            var message = self.getMessageTemplate()
+            message.type = Message.MessageType.received.rawValue
+            message.message = "Any random text"
+            if self.messageService.addMessage(message) {
+                self.messages.append(message)
+                self.delegate?.messageAdded(at: self.messages.count - 1)
+            }
+        }
+    }
+
+    private func getMessageTemplate() -> Message {
+        return Message(
+            message: nil,
+            filePath: nil,
+            type: Message.MessageType.sent.rawValue,
+            userId: userId, id: UUID().uuidString,
+            time: Int64(Date().timeIntervalSince1970 * 1000)
+        )
     }
 
 }

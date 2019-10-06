@@ -11,8 +11,8 @@ import Foundation
 struct Message {
     
     enum MessageType: Int16 {
-        case Sent
-        case Received
+        case sent
+        case received
     }
 
     var message: String?

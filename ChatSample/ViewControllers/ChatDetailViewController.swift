@@ -32,6 +32,7 @@ class ChatDetailViewController: UIViewController {
     init(userId: String) {
         viewModel = ChatDetailViewModel(userId: userId)
         super.init(nibName: nil, bundle: nil)
+        viewModel.delegate = self
         chatBar.delegate = self
         prepareTableView()
         setupConstraint()
@@ -144,18 +145,29 @@ extension ChatDetailViewController: UITableViewDelegate, UITableViewDataSource {
         guard let message = viewModel.message(at: indexPath.row) else {
             return UITableViewCell()
         }
-        if message.type == Message.MessageType.Sent.rawValue {
+        if message.type == Message.MessageType.sent.rawValue {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: sentCellId, for: indexPath) as? SentMessageCell else {
                 return UITableViewCell()
             }
-            cell.update(text: message.message!)
+            cell.update(model: message)
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: receivedCellId, for: indexPath) as? ReceivedMessageCell else {
                 return UITableViewCell()
             }
-            cell.update(text: message.message!, name: viewModel.user!.displayName, imagePath: nil)
+            cell.update(model: message, user: viewModel.user!)
             return cell
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let message = viewModel.message(at: indexPath.row) else {
+            return 0
+        }
+        if message.type == Message.MessageType.sent.rawValue {
+            return SentMessageCell.rowHeight(model: message)
+        } else {
+            return ReceivedMessageCell.rowHeight(model: message)
         }
     }
 }
@@ -168,10 +180,58 @@ extension ChatDetailViewController: ChatBarDelegate {
     }
 
     func sendMessage(text: String) {
-        print("Send message")
+        viewModel.sendText(text)
     }
 
     func attachmentTapped() {
-        print("Open attachment")
+        let pickerVC = UIImagePickerController()
+        pickerVC.delegate = self
+        pickerVC.sourceType = .photoLibrary
+        present(pickerVC, animated: true, completion: nil)
+    }
+}
+
+extension ChatDetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.originalImage] as? UIImage else {
+            picker.dismiss(animated: true, completion: nil)
+            return
+        }
+        let filePath = saveImage(image)
+        viewModel.sendAttachment(filePath)
+        picker.dismiss(animated: true, completion: nil)
+    }
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+
+    private func saveImage(_ image: UIImage) -> String {
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let fileName = String(format: "IMG-%f.jpeg", Date().timeIntervalSince1970)
+        let path = documentsURL.appendingPathComponent(fileName).path
+        let data = ImageUtil().compress(image: image) as? NSData
+        data?.write(toFile: path, atomically: true)
+        return fileName
+    }
+}
+
+extension ChatDetailViewController: ChatDetailDelegate {
+    func messagesLoaded() {
+        tableView.reloadData()
+    }
+
+    func loadingError() {
+        print("Error while loading")
+    }
+
+    func messageAdded(at position: Int) {
+        guard position >= tableView.numberOfSections else {
+            return
+        }
+        tableView.beginUpdates()
+        tableView.insertRows(at: [IndexPath(row: position, section: 0)], with: .automatic)
+        tableView.endUpdates()
+        tableView.scrollToRow(at: IndexPath(row: position, section: 0), at: .bottom, animated: false)
     }
 }

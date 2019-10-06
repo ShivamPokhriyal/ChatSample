@@ -33,6 +33,7 @@ class ReceivedMessageCell: UITableViewCell {
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 14)
         label.lineBreakMode = .byWordWrapping
+        label.isHidden = true
         return label
     }()
 
@@ -44,6 +45,15 @@ class ReceivedMessageCell: UITableViewCell {
         return view
     }()
 
+    let photoView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.backgroundColor = .clear
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.isHidden = true
+        return imageView
+    }()
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupConstraints()
@@ -53,19 +63,45 @@ class ReceivedMessageCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func update(text: String, name: String, imagePath: String?) {
-        messageLabel.text = text
-        nameLabel.text = name
-        if let imagePath = imagePath {
-
+    func update(model: Message, user: User) {
+        if let filePath = model.filePath {
+            let docDirPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let path = docDirPath.appendingPathComponent(filePath)
+            let data = try! Data(contentsOf: path)
+            let image = UIImage(data: data)
+            photoView.image = image
+            photoView.isHidden = false
+            messageLabel.isHidden = true
+            bubbleView.isHidden = true
+        } else {
+            messageLabel.text = model.message ?? "Attachment"
+            photoView.isHidden = true
+            messageLabel.isHidden = false
+            bubbleView.isHidden = false
+        }
+        nameLabel.text = user.displayName
+        if let imagePath = user.imageUrl {
+            let docDirPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            let path = docDirPath.appendingPathComponent(imagePath)
+            let data = try! Data(contentsOf: path)
+            profileImage.image = UIImage(data: data)
         } else {
             let placeholder = UIImage(named: "placeholder", in: Bundle.chat, compatibleWith: nil)
             profileImage.image = placeholder
         }
     }
 
+    class func rowHeight(model: Message) ->CGFloat {
+        if model.filePath != nil {
+            return 191
+        }
+        let text = model.message ?? "Attachment"
+        let width = UIScreen.main.bounds.width - 120
+        return text.heightWithConstrainedWidth(width, font: UIFont.systemFont(ofSize: 14)) + 41
+    }
+
     private func setupConstraints() {
-        contentView.addViewsForAutoLayout(views: [nameLabel, profileImage, bubbleView, messageLabel])
+        contentView.addViewsForAutoLayout(views: [nameLabel, profileImage, bubbleView, messageLabel, photoView])
 
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(
@@ -108,7 +144,14 @@ class ReceivedMessageCell: UITableViewCell {
                 constant: -10),
             messageLabel.bottomAnchor.constraint(
                 equalTo: bubbleView.bottomAnchor,
-                constant: -5)
+                constant: -5),
+
+            photoView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5),
+            photoView.leadingAnchor.constraint(
+                equalTo: contentView.leadingAnchor,
+                constant: 50),
+            photoView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5),
+            photoView.heightAnchor.constraint(equalToConstant: 150)
             ])
     }
 }

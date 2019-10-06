@@ -233,11 +233,16 @@ extension ChatDetailViewController: ChatDetailDelegate {
             self.tableView.scrollToRow(at: IndexPath(row: self.viewModel.numberOfRows(in: 0) - 1, section: 0), at: .bottom, animated: false)
             self.tableView.isHidden = false
         }
-
     }
 
     func loadingError() {
-        print("Error while loading")
+        let alert = UIAlertController(title: "Error", message: "Some error occured while loading conversation", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { [weak self] _ in
+            guard let weakSelf = self else { return }
+            weakSelf.viewModel.prepareController()
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
 
     func messageAdded(at position: Int) {
@@ -248,5 +253,11 @@ extension ChatDetailViewController: ChatDetailDelegate {
         tableView.insertRows(at: [IndexPath(row: position, section: 0)], with: .automatic)
         tableView.endUpdates()
         tableView.scrollToRow(at: IndexPath(row: position, section: 0), at: .bottom, animated: false)
+    }
+
+    func messageSendError() {
+        let alert = UIAlertController(title: "Error", message: "Couldn't send message", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }

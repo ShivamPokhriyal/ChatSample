@@ -23,16 +23,6 @@ class HomeViewController: UIViewController {
         return tableView
     }()
 
-    let noConversationLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
-        label.text = "Couldn't load conversations🥺"
-        label.font = UIFont.systemFont(ofSize: 18)
-        label.isHidden = false
-        return label
-    }()
-
     init() {
         super.init(nibName: nil, bundle: nil)
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "SendMessage"), object: nil, queue: nil) { [weak self] notification in
@@ -58,20 +48,13 @@ class HomeViewController: UIViewController {
 
     private func setupView() {
         self.navigationItem.title = "Chat"
-        view.addViewsForAutoLayout(views: [tableView, noConversationLabel])
+        view.addViewsForAutoLayout(views: [tableView])
         view.backgroundColor = .white
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableView.topAnchor.constraint(equalTo: topAnchor),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-
-            noConversationLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            noConversationLabel.topAnchor.constraint(equalTo: topAnchor),
-            noConversationLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
-            noConversationLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            noConversationLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            noConversationLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor)
             ])
     }
 
@@ -116,12 +99,17 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 extension HomeViewController: HomeViewModelDelegate {
     func chatLoaded() {
         tableView.isHidden = false
-        noConversationLabel.isHidden = true
         tableView.reloadData()
     }
 
     func loadingError() {
         tableView.isHidden = true
-        noConversationLabel.isHidden = false
+        let alert = UIAlertController(title: "Error", message: "Some error occured while loading conversation", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { [weak self] _ in
+            guard let weakSelf = self else { return }
+            weakSelf.viewModel.prepareController()
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
 }

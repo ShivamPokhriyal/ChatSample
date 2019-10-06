@@ -12,6 +12,7 @@ protocol ChatDetailDelegate: class {
     func messagesLoaded()
     func loadingError()
     func messageAdded(at position: Int)
+    func messageSendError()
 }
 
 class ChatDetailViewModel {
@@ -73,7 +74,7 @@ class ChatDetailViewModel {
             sendMessageNotification(message: message)
             reply()
         } else {
-            /// Show error
+            delegate?.messageSendError()
         }
     }
 

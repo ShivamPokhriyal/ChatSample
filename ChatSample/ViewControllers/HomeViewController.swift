@@ -17,7 +17,7 @@ class HomeViewController: UIViewController {
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorStyle = .none
-        tableView.allowsSelection = false
+        tableView.allowsSelection = true
         tableView.backgroundColor = .clear
         tableView.estimatedRowHeight = 60
         return tableView
@@ -87,6 +87,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
         cell.update(model: chatItem)
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Tapped")
+        guard let chatItem = viewModel.chatItem(at: indexPath.row) else { return }
+        let vc = ChatDetailViewController(userId: chatItem.message.userId)
+        self.navigationController?.pushViewController(vc, animated: false)
     }
 
 }

@@ -66,6 +66,7 @@ class HomeViewController: UIViewController {
 
 }
 
+// MARK: tableview datasource and delegate
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -96,6 +97,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
 }
 
+// MARK: viewmodel delegate
 extension HomeViewController: HomeViewModelDelegate {
     func chatLoaded() {
         tableView.isHidden = false

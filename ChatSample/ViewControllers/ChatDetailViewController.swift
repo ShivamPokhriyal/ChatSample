@@ -142,6 +142,7 @@ class ChatDetailViewController: UIViewController {
 
 }
 
+// MARK: tableview datasource and delegates
 extension ChatDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfSections()
@@ -182,6 +183,7 @@ extension ChatDetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+// MARK: chat bar delegate
 extension ChatDetailViewController: ChatBarDelegate {
     func updateChatBarHeight(_ height: CGFloat) {
         if chatBarHeightConstraint.constant != height {
@@ -201,6 +203,7 @@ extension ChatDetailViewController: ChatBarDelegate {
     }
 }
 
+// MARK: image picker delegate
 extension ChatDetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.originalImage] as? UIImage else {
@@ -226,6 +229,7 @@ extension ChatDetailViewController: UIImagePickerControllerDelegate, UINavigatio
     }
 }
 
+// MARK: viewmodel delegate
 extension ChatDetailViewController: ChatDetailDelegate {
     func messagesLoaded() {
         tableView.reloadData()

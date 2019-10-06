@@ -13,6 +13,11 @@ import CoreData
 @objc(Message)
 public class Message: NSManagedObject {
 
+    enum MessageType: Int16 {
+        case Sent
+        case Received
+    }
+
 //    @nonobjc public class func fetchRequest() -> NSFetchRequest<Message> {
 //        return NSFetchRequest<Message>(entityName: "Message")
 //    }
@@ -22,5 +27,6 @@ public class Message: NSManagedObject {
     @NSManaged public var type: Int16
     @NSManaged public var userId: String
     @NSManaged public var id: String
+    @NSManaged public var time: Int64
 
 }

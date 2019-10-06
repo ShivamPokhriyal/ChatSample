@@ -1,32 +1,35 @@
 //
-//  Message+CoreDataClass.swift
+//  Message.swift
 //  ChatSample
 //
 //  Created by Shivam Pokhriyal on 06/10/19.
 //  Copyright © 2019 Shivam Pokhriyal. All rights reserved.
 //
-//
 
 import Foundation
-import CoreData
 
-@objc(Message)
-public class Message: NSManagedObject {
-
+struct Message {
+    
     enum MessageType: Int16 {
         case Sent
         case Received
     }
 
-//    @nonobjc public class func fetchRequest() -> NSFetchRequest<Message> {
-//        return NSFetchRequest<Message>(entityName: "Message")
-//    }
+    var message: String?
+    var filePath: String?
+    var type: Int16
+    var userId: String
+    var id: String
+    var time: Int64
+}
 
-    @NSManaged public var message: String?
-    @NSManaged public var filePath: String?
-    @NSManaged public var type: Int16
-    @NSManaged public var userId: String
-    @NSManaged public var id: String
-    @NSManaged public var time: Int64
-
+extension Message {
+    init(with dbMessage: DBMessage) {
+        message = dbMessage.message
+        filePath = dbMessage.filePath
+        type = dbMessage.type
+        userId = dbMessage.userId
+        id = dbMessage.id
+        time = dbMessage.time
+    }
 }

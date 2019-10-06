@@ -29,20 +29,20 @@ class DBHandler {
         return container
     }()
 
-    public func getUserEntity() -> User? {
+    public func getUserEntity() -> DBUser? {
         let context = persistentContainer.viewContext
         guard let entity = NSEntityDescription.entity(forEntityName: Entity.user, in: context) else {
             return nil
         }
-        return NSManagedObject(entity: entity, insertInto: context) as? User
+        return NSManagedObject(entity: entity, insertInto: context) as? DBUser
     }
 
-    public func getMessageEntity() -> Message? {
+    public func getMessageEntity() -> DBMessage? {
         let context = persistentContainer.viewContext
         guard let entity = NSEntityDescription.entity(forEntityName: Entity.message, in: context) else {
             return nil
         }
-        return NSManagedObject(entity: entity, insertInto: context) as? Message
+        return NSManagedObject(entity: entity, insertInto: context) as? DBMessage
     }
 
     /// Saves changes to persistent store

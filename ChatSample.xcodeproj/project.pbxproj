@@ -15,10 +15,12 @@
 		1A107B042349244B00A0C942 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A107B022349244B00A0C942 /* LaunchScreen.storyboard */; };
 		1A107B0F2349244B00A0C942 /* ChatSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A107B0E2349244B00A0C942 /* ChatSampleTests.swift */; };
 		1A107B1E234924DB00A0C942 /* DBHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A107B1D234924DB00A0C942 /* DBHandler.swift */; };
-		1A107B272349291500A0C942 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A107B252349291500A0C942 /* User.swift */; };
-		1A107B2F23492AB500A0C942 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A107B2D23492AB500A0C942 /* Message.swift */; };
+		1A107B272349291500A0C942 /* DBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A107B252349291500A0C942 /* DBUser.swift */; };
+		1A107B2F23492AB500A0C942 /* DBMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A107B2D23492AB500A0C942 /* DBMessage.swift */; };
 		1A107B3223492E7A00A0C942 /* UserDBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A107B3123492E7A00A0C942 /* UserDBService.swift */; };
 		1A107B3423493DF800A0C942 /* MessageDBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A107B3323493DF800A0C942 /* MessageDBService.swift */; };
+		1A107B362349C9E100A0C942 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A107B352349C9E100A0C942 /* Message.swift */; };
+		1A107B382349CAB900A0C942 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A107B372349CAB900A0C942 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,10 +46,12 @@
 		1A107B0E2349244B00A0C942 /* ChatSampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSampleTests.swift; sourceTree = "<group>"; };
 		1A107B102349244B00A0C942 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A107B1D234924DB00A0C942 /* DBHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBHandler.swift; sourceTree = "<group>"; };
-		1A107B252349291500A0C942 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		1A107B2D23492AB500A0C942 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		1A107B252349291500A0C942 /* DBUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBUser.swift; sourceTree = "<group>"; };
+		1A107B2D23492AB500A0C942 /* DBMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBMessage.swift; sourceTree = "<group>"; };
 		1A107B3123492E7A00A0C942 /* UserDBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDBService.swift; sourceTree = "<group>"; };
 		1A107B3323493DF800A0C942 /* MessageDBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDBService.swift; sourceTree = "<group>"; };
+		1A107B352349C9E100A0C942 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		1A107B372349CAB900A0C942 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,8 +137,10 @@
 		1A107B1B2349247E00A0C942 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1A107B2D23492AB500A0C942 /* Message.swift */,
-				1A107B252349291500A0C942 /* User.swift */,
+				1A107B2D23492AB500A0C942 /* DBMessage.swift */,
+				1A107B252349291500A0C942 /* DBUser.swift */,
+				1A107B352349C9E100A0C942 /* Message.swift */,
+				1A107B372349CAB900A0C942 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -250,10 +256,12 @@
 				1A107AF92349244A00A0C942 /* ViewController.swift in Sources */,
 				1A107AF72349244A00A0C942 /* AppDelegate.swift in Sources */,
 				1A107B1E234924DB00A0C942 /* DBHandler.swift in Sources */,
-				1A107B2F23492AB500A0C942 /* Message.swift in Sources */,
+				1A107B2F23492AB500A0C942 /* DBMessage.swift in Sources */,
 				1A107AFF2349244A00A0C942 /* ChatSample.xcdatamodeld in Sources */,
 				1A107B3423493DF800A0C942 /* MessageDBService.swift in Sources */,
-				1A107B272349291500A0C942 /* User.swift in Sources */,
+				1A107B272349291500A0C942 /* DBUser.swift in Sources */,
+				1A107B362349C9E100A0C942 /* Message.swift in Sources */,
+				1A107B382349CAB900A0C942 /* User.swift in Sources */,
 				1A107B3223492E7A00A0C942 /* UserDBService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

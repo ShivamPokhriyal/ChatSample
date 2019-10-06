@@ -21,6 +21,13 @@
 		1A107B3423493DF800A0C942 /* MessageDBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A107B3323493DF800A0C942 /* MessageDBService.swift */; };
 		1A107B362349C9E100A0C942 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A107B352349C9E100A0C942 /* Message.swift */; };
 		1A107B382349CAB900A0C942 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A107B372349CAB900A0C942 /* User.swift */; };
+		1A107B3A2349CD8000A0C942 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A107B392349CD8000A0C942 /* HomeViewController.swift */; };
+		1A107B3C2349CD8D00A0C942 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A107B3B2349CD8D00A0C942 /* HomeViewModel.swift */; };
+		1A107B3F2349E1D400A0C942 /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A107B3E2349E1D400A0C942 /* ChatListCell.swift */; };
+		1A107B422349E29C00A0C942 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A107B412349E29C00A0C942 /* UIView+Extension.swift */; };
+		1A107B442349E39B00A0C942 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A107B432349E39B00A0C942 /* UIViewController+Extension.swift */; };
+		1A107B462349E67A00A0C942 /* ChatItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A107B452349E67A00A0C942 /* ChatItem.swift */; };
+		1A107B482349E99E00A0C942 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A107B472349E99E00A0C942 /* Bundle+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +59,13 @@
 		1A107B3323493DF800A0C942 /* MessageDBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDBService.swift; sourceTree = "<group>"; };
 		1A107B352349C9E100A0C942 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		1A107B372349CAB900A0C942 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		1A107B392349CD8000A0C942 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		1A107B3B2349CD8D00A0C942 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		1A107B3E2349E1D400A0C942 /* ChatListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
+		1A107B412349E29C00A0C942 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		1A107B432349E39B00A0C942 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		1A107B452349E67A00A0C942 /* ChatItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatItem.swift; sourceTree = "<group>"; };
+		1A107B472349E99E00A0C942 /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +107,8 @@
 		1A107AF52349244A00A0C942 /* ChatSample */ = {
 			isa = PBXGroup;
 			children = (
+				1A107B402349E28F00A0C942 /* Extensions */,
+				1A107B3D2349E1BC00A0C942 /* Views */,
 				1A107B1C2349248700A0C942 /* ViewModels */,
 				1A107B1B2349247E00A0C942 /* Models */,
 				1A107B1A2349247200A0C942 /* ViewControllers */,
@@ -130,6 +146,7 @@
 		1A107B1A2349247200A0C942 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				1A107B392349CD8000A0C942 /* HomeViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -141,6 +158,7 @@
 				1A107B252349291500A0C942 /* DBUser.swift */,
 				1A107B352349C9E100A0C942 /* Message.swift */,
 				1A107B372349CAB900A0C942 /* User.swift */,
+				1A107B452349E67A00A0C942 /* ChatItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -148,8 +166,27 @@
 		1A107B1C2349248700A0C942 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				1A107B3B2349CD8D00A0C942 /* HomeViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		1A107B3D2349E1BC00A0C942 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1A107B3E2349E1D400A0C942 /* ChatListCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1A107B402349E28F00A0C942 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1A107B412349E29C00A0C942 /* UIView+Extension.swift */,
+				1A107B432349E39B00A0C942 /* UIViewController+Extension.swift */,
+				1A107B472349E99E00A0C942 /* Bundle+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,12 +291,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A107AF92349244A00A0C942 /* ViewController.swift in Sources */,
+				1A107B482349E99E00A0C942 /* Bundle+Extension.swift in Sources */,
 				1A107AF72349244A00A0C942 /* AppDelegate.swift in Sources */,
 				1A107B1E234924DB00A0C942 /* DBHandler.swift in Sources */,
+				1A107B442349E39B00A0C942 /* UIViewController+Extension.swift in Sources */,
 				1A107B2F23492AB500A0C942 /* DBMessage.swift in Sources */,
+				1A107B3F2349E1D400A0C942 /* ChatListCell.swift in Sources */,
 				1A107AFF2349244A00A0C942 /* ChatSample.xcdatamodeld in Sources */,
 				1A107B3423493DF800A0C942 /* MessageDBService.swift in Sources */,
+				1A107B462349E67A00A0C942 /* ChatItem.swift in Sources */,
 				1A107B272349291500A0C942 /* DBUser.swift in Sources */,
+				1A107B422349E29C00A0C942 /* UIView+Extension.swift in Sources */,
+				1A107B3C2349CD8D00A0C942 /* HomeViewModel.swift in Sources */,
+				1A107B3A2349CD8000A0C942 /* HomeViewController.swift in Sources */,
 				1A107B362349C9E100A0C942 /* Message.swift in Sources */,
 				1A107B382349CAB900A0C942 /* User.swift in Sources */,
 				1A107B3223492E7A00A0C942 /* UserDBService.swift in Sources */,

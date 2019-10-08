@@ -38,6 +38,12 @@
 		1A107B5B234A63E300A0C942 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A107B5A234A63E300A0C942 /* SampleData.swift */; };
 		1A107B5D234A71E600A0C942 /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A107B5C234A71E600A0C942 /* HomeViewModelTests.swift */; };
 		1A107B60234A742000A0C942 /* ChatViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A107B5F234A742000A0C942 /* ChatViewModelTests.swift */; };
+		1A610402234C59CD00A3EEFF /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A610401234C59CD00A3EEFF /* ContactsViewController.swift */; };
+		1A610404234C59E900A3EEFF /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A610403234C59E900A3EEFF /* ContactCell.swift */; };
+		1A610406234C5A7700A3EEFF /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A610405234C5A7700A3EEFF /* ContactViewModel.swift */; };
+		1A610409234C5CA900A3EEFF /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A610408234C5CA900A3EEFF /* Contacts.framework */; };
+		1A61040B234C605800A3EEFF /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A61040A234C605800A3EEFF /* Dictionary+Extension.swift */; };
+		1A61040D234C7DC200A3EEFF /* ContactViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A61040C234C7DC200A3EEFF /* ContactViewModelTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +92,12 @@
 		1A107B5A234A63E300A0C942 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		1A107B5C234A71E600A0C942 /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
 		1A107B5F234A742000A0C942 /* ChatViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModelTests.swift; sourceTree = "<group>"; };
+		1A610401234C59CD00A3EEFF /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
+		1A610403234C59E900A3EEFF /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
+		1A610405234C5A7700A3EEFF /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModel.swift; sourceTree = "<group>"; };
+		1A610408234C5CA900A3EEFF /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
+		1A61040A234C605800A3EEFF /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
+		1A61040C234C7DC200A3EEFF /* ContactViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModelTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A610409234C5CA900A3EEFF /* Contacts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +125,7 @@
 				1A107AF52349244A00A0C942 /* ChatSample */,
 				1A107B0D2349244B00A0C942 /* ChatSampleTests */,
 				1A107AF42349244A00A0C942 /* Products */,
+				1A610407234C5CA900A3EEFF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -152,6 +166,7 @@
 				1A107B102349244B00A0C942 /* Info.plist */,
 				1A107B5C234A71E600A0C942 /* HomeViewModelTests.swift */,
 				1A107B5F234A742000A0C942 /* ChatViewModelTests.swift */,
+				1A61040C234C7DC200A3EEFF /* ContactViewModelTest.swift */,
 			);
 			path = ChatSampleTests;
 			sourceTree = "<group>";
@@ -171,6 +186,7 @@
 			children = (
 				1A107B392349CD8000A0C942 /* HomeViewController.swift */,
 				1A107B492349FECE00A0C942 /* ChatDetailViewController.swift */,
+				1A610401234C59CD00A3EEFF /* ContactsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -192,6 +208,7 @@
 			children = (
 				1A107B3B2349CD8D00A0C942 /* HomeViewModel.swift */,
 				1A107B4B2349FEE500A0C942 /* ChatDetailViewModel.swift */,
+				1A610405234C5A7700A3EEFF /* ContactViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -203,6 +220,7 @@
 				1A107B4D234A03A900A0C942 /* ChatBar.swift */,
 				1A107B4F234A207000A0C942 /* SentMessageCell.swift */,
 				1A107B51234A208000A0C942 /* ReceivedMessageCell.swift */,
+				1A610403234C59E900A3EEFF /* ContactCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -214,6 +232,7 @@
 				1A107B432349E39B00A0C942 /* UIViewController+Extension.swift */,
 				1A107B472349E99E00A0C942 /* Bundle+Extension.swift */,
 				1A107B58234A46D700A0C942 /* String+Extension.swift */,
+				1A61040A234C605800A3EEFF /* Dictionary+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -225,6 +244,14 @@
 				1A107B5A234A63E300A0C942 /* SampleData.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		1A610407234C5CA900A3EEFF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1A610408234C5CA900A3EEFF /* Contacts.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,7 +355,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A61040B234C605800A3EEFF /* Dictionary+Extension.swift in Sources */,
 				1A107AF92349244A00A0C942 /* ViewController.swift in Sources */,
+				1A610402234C59CD00A3EEFF /* ContactsViewController.swift in Sources */,
 				1A107B482349E99E00A0C942 /* Bundle+Extension.swift in Sources */,
 				1A107B50234A207000A0C942 /* SentMessageCell.swift in Sources */,
 				1A107AF72349244A00A0C942 /* AppDelegate.swift in Sources */,
@@ -336,6 +365,7 @@
 				1A107B442349E39B00A0C942 /* UIViewController+Extension.swift in Sources */,
 				1A107B2F23492AB500A0C942 /* DBMessage.swift in Sources */,
 				1A107B4C2349FEE500A0C942 /* ChatDetailViewModel.swift in Sources */,
+				1A610404234C59E900A3EEFF /* ContactCell.swift in Sources */,
 				1A107B52234A208000A0C942 /* ReceivedMessageCell.swift in Sources */,
 				1A107B3F2349E1D400A0C942 /* ChatListCell.swift in Sources */,
 				1A107AFF2349244A00A0C942 /* ChatSample.xcdatamodeld in Sources */,
@@ -351,6 +381,7 @@
 				1A107B3A2349CD8000A0C942 /* HomeViewController.swift in Sources */,
 				1A107B362349C9E100A0C942 /* Message.swift in Sources */,
 				1A107B382349CAB900A0C942 /* User.swift in Sources */,
+				1A610406234C5A7700A3EEFF /* ContactViewModel.swift in Sources */,
 				1A107B3223492E7A00A0C942 /* UserDBService.swift in Sources */,
 				1A107B4A2349FECE00A0C942 /* ChatDetailViewController.swift in Sources */,
 			);
@@ -361,6 +392,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A107B0F2349244B00A0C942 /* ChatSampleTests.swift in Sources */,
+				1A61040D234C7DC200A3EEFF /* ContactViewModelTest.swift in Sources */,
 				1A107B60234A742000A0C942 /* ChatViewModelTests.swift in Sources */,
 				1A107B5D234A71E600A0C942 /* HomeViewModelTests.swift in Sources */,
 			);

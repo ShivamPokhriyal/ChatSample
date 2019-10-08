@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Contacts
 
 class HomeViewController: UIViewController {
 
@@ -43,6 +44,7 @@ class HomeViewController: UIViewController {
         viewModel.delegate = self
         viewModel.prepareController()
         setupView()
+        setupNavigationItem()
         prepareTableView()
     }
 
@@ -58,10 +60,30 @@ class HomeViewController: UIViewController {
             ])
     }
 
+    private func setupNavigationItem() {
+        let item = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(openContacts))
+        navigationItem.rightBarButtonItem = item
+    }
+
     private func prepareTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ChatListCell.self, forCellReuseIdentifier: cellIdentifier)
+    }
+
+    @objc private func openContacts() {
+//        DispatchQueue.main.async {
+            CNContactStore().requestAccess(for: .contacts, completionHandler: { (grant, error) in
+                if grant {
+                    DispatchQueue.main.async {
+                        let vc = ContactsViewController()
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                } else {
+
+                }
+            })
+//        }
     }
 
 }
